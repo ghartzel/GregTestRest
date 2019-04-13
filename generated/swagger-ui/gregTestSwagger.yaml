@@ -1,0 +1,87 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample."
+  version: "v1"
+  title: "Swagger Gradle Plugin Sample"
+  termsOfService: "http://www.example.com/termsOfService"
+  contact:
+    name: "Name"
+    url: "http://www.example.com"
+    email: "email@email.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/swagger2-demo"
+tags:
+- name: "Hello Greeting"
+schemes:
+- "http"
+paths:
+  /greeting:
+    get:
+      tags:
+      - "Hello Greeting"
+      summary: "Greet a user"
+      description: ""
+      operationId: "greeting"
+      parameters:
+      - name: "firstName"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved list"
+          schema:
+            $ref: "#/definitions/namegreet"
+        401:
+          description: "You are not authorized to view the resource"
+        403:
+          description: "Accessing the resource you were trying to reach is forbidden"
+        404:
+          description: "The resource you were trying to reach is not found"
+    post:
+      tags:
+      - "Hello Greeting"
+      summary: "Greet a user"
+      description: ""
+      operationId: "greetingPost"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        200:
+          description: "Successfully retrieved list"
+          schema:
+            $ref: "#/definitions/namegreet"
+        401:
+          description: "You are not authorized to view the resource"
+        403:
+          description: "Accessing the resource you were trying to reach is forbidden"
+        404:
+          description: "The resource you were trying to reach is not found"
+definitions:
+  namegreet:
+    type: "object"
+    properties:
+      nameID:
+        type: "integer"
+        format: "int64"
+        readOnly: true
+      firstName:
+        type: "string"
+        readOnly: true
+  user:
+    type: "object"
+    required:
+    - "firstName"
+    properties:
+      firstName:
+        type: "string"
+        example: "Greg"
+        description: "firstName"
